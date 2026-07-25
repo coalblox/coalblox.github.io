@@ -178,7 +178,7 @@ Roblox.Endpoints.Urls['/thumbnail/remove-asset-media'] = 'https://www.roblox.com
 Roblox.Endpoints.Urls['/thumbnail/set-asset-media-sort-order'] = 'https://www.roblox.com/thumbnail/set-asset-media-sort-order';
 Roblox.Endpoints.Urls['/thumbnail/place-thumbnails'] = 'https://www.roblox.com/thumbnail/place-thumbnails';
 Roblox.Endpoints.Urls['/thumbnail/place-thumbnails-partial'] = 'https://www.roblox.com/thumbnail/place-thumbnails-partial';
-Roblox.Endpoints.Urls['/UserCheck/checkifinvalidusernameforsignup'] = 'https://coalblox-api.onrender.com/UserCheck/checkifinvalidusernameforsignup';
+Roblox.Endpoints.Urls['/UserCheck/checkifinvalidusernameforsignup'] = 'https://coalblox-api-yh3x.onrender.com/UserCheck/checkifinvalidusernameforsignup';
 Roblox.Endpoints.Urls['/thumbnail_holder/g'] = 'https://www.roblox.com/thumbnail_holder/g';
 Roblox.Endpoints.Urls['/users/{id}/profile'] = 'https://www.roblox.com/users/{id}/profile';
 Roblox.Endpoints.Urls['/service-workers/push-notifications'] = 'https://www.roblox.com/service-workers/push-notifications';
@@ -263,7 +263,7 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#LandingNavbar">
                     Log In
                 </button>
-                <div class="navbar-brand hidden-xs"><img alt="CoalBlox Logo" class="robloxLogo" src="/coal.png?v=2" /></div>
+                <div class="navbar-brand hidden-xs"><img alt="CoalBlox Logo" class="robloxLogo" src="/coal.png?v=3" /></div>
                 <ul id="TopLeftNavLinks" class="nav navbar-nav">
                     <li id="PlayLink" class="pull-left"><a href="#RollerContainer" onclick="return scrollTo(1, '#RollerContainer');">Play</a></li>
                     <li id="AboutLink" class="pull-left"><a href="#WhatsRobloxContainer" onclick="return scrollTo(2, '#WhatsRobloxContainer');">About</a></li>
@@ -274,7 +274,7 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
             
 
 <div class="collapse navbar-collapse col-sm-6" id="LandingNavbar" ng-modules="roblox.formEvents" >
-    <form name="loginForm" action="https://coalblox-api.onrender.com/login/v1" id="LogInForm" class="navbar-form form-inline navbar-right" method="post" role="form" rbx-form-context context="RollerCoaster" novalidate>
+    <form name="loginForm" action="https://coalblox-api-yh3x.onrender.com/login/v1" id="LogInForm" class="navbar-form form-inline navbar-right" method="post" role="form" rbx-form-context context="RollerCoaster" novalidate>
         <div class="form-group" id="LoginUsernameParent">
             <input id="LoginUsername" type="text" placeholder="Username" class="form-control" name="username" rbx-form-interaction autofocus="autofocus" />
         </div>
@@ -765,7 +765,7 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
                     <p id="signup-GenderInputValidation" class="form-control-label input-validation text-error" ng-bind="(badSubmit && !(signup.gender == 2 || signup.gender == 3)) ? 'Gender is required' : ''"></p>
                 </div>
             </div>
-            <button id="signup-button" type="button" tabindex="9" class="btn-primary-md signup-submit-button" rbx-form-interaction name="signupSubmit" ng-disabled="isSubmitting" data-signup-api-url="https://coalblox-api.onrender.com/signup/v1" ng-click="submitSignup($event)" ng-keypress="submitSignup($event)">Sign Up</button>
+            <button id="signup-button" type="button" tabindex="9" class="btn-primary-md signup-submit-button" rbx-form-interaction name="signupSubmit" ng-disabled="isSubmitting" data-signup-api-url="https://coalblox-api-yh3x.onrender.com/signup/v1" ng-click="submitSignup($event)" ng-keypress="submitSignup($event)">Sign Up</button>
             <noscript>
                 <div class="text-danger">
                     <strong>JavaScript is required to submit this form.</strong>
@@ -791,8 +791,8 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
 		</iframe><br /><textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea><input name="recaptcha_response_field" value="manual_challenge" type="hidden" />
 </noscript>
         <button id="CaptchaSubmitButton" class="btn-primary-md captcha-submit-button"
-                data-signup-captcha-api-url="https://coalblox-api.onrender.com/captcha/validate/signup"
-                data-log-in-captcha-api-url="https://coalblox-api.onrender.com/captcha/validate/login"
+                data-signup-captcha-api-url="https://coalblox-api-yh3x.onrender.com/captcha/validate/signup"
+                data-log-in-captcha-api-url="https://coalblox-api-yh3x.onrender.com/captcha/validate/login"
                 ng-click="submitCaptcha($event)"
                 ng-disabled="isSubmitting"
                 rbx-form-interaction name="captchaSubmit">
