@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]><html class="ie8" ng-app="robloxApp"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html ng-app="SignupOrLogin">
+<html>
 <!--<![endif]-->
 
 <head>
@@ -352,8 +352,7 @@ Forgot Username/Password?
      ng-controller="SignupOrLoginController">
 
 
-    <div class="signup-container"
-         ng-controller="SignupController">
+    <div class="signup-container">
 
 
         <div class="signup-input-area"
@@ -779,12 +778,13 @@ document.getElementById("LogInForm")
         const data = await response.json();
 
 
-        if(data.success){
+        const data = await response.json();
 
-            window.location.href =
-                data.redirect;
+console.log(data);
 
-        }
+if (data.success) {
+    window.location.replace("/games");
+}
         else {
 
             alert(data.message);
@@ -850,10 +850,11 @@ document.getElementById("signup-button").addEventListener("click", async functio
         console.log(data);
 
         if (data.success) {
-            window.location.href = data.redirect || "/games";
-        } else {
-            alert(data.message || "Signup failed.");
-        }
+    window.location.replace("/games");
+    return;
+} else {
+    alert(data.message || "Signup failed.");
+}
 
     } catch (err) {
         console.error(err);
