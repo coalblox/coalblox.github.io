@@ -759,10 +759,12 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
                     <div class="form-control fake-input-lg">
                         <label>Gender</label>
                             <div id="FemaleButton" class="gender-circle" tabindex="7" rbx-form-interaction name="genderFemale" ng-class="{ 'selected-gender': signup.gender == 3 }" ng-click="setGender($event, 3)" ng-keypress="setGender($event, 3)">
-                                <div class="cover-sprite gender female"></div>
-                    </div>
-                            <div id="MaleButton" class="gender-circle" tabindex="8" rbx-form-interaction name="genderMale" ng-class="{ 'selected-gender': signup.gender == 2 }" ng-click="setGender($event, 2)" ng-keypress="setGender($event, 2)">
-                                <div class="cover-sprite gender male"></div>
+    <div class="cover-sprite gender female"></div>
+</div>
+
+<div id="MaleButton" class="gender-circle" tabindex="8" rbx-form-interaction name="genderMale" ng-class="{ 'selected-gender': signup.gender == 2 }" ng-click="setGender($event, 2)" ng-keypress="setGender($event, 2)">
+    <div class="cover-sprite gender male"></div>
+</div></div>
                     </div>
                     </div>
                     <p id="signup-GenderInputValidation" class="form-control-label input-validation text-error" ng-bind="(badSubmit && !(signup.gender == 2 || signup.gender == 3)) ? 'Gender is required' : ''"></p>
