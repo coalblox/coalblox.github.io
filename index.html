@@ -972,51 +972,28 @@ Roblox.JSErrorTracker = Roblox.JSErrorTracker || {
     
 
 <script type="text/javascript">
-    $(function(){
-        function trackReturns() {
-    function dayDiff(d1, d2) {
-        return Math.floor((d1 - d2) / 86400000);
-    }
-
-    try {
-        localStorage.setItem(cookieName, JSON.stringify(cookie));
-    } catch (ex) {
-        return false;
-    }
-}
-
-            var daysSinceFirstVisit = dayDiff(new Date(), new Date(cookie.ts));
-            if (daysSinceFirstVisit == 1 && typeof cookie.odr === "undefined") {
-                RobloxEventManager.triggerEvent('rbx_evt_odr', {});
-                cookie.odr = 1;
-            }
-            if (daysSinceFirstVisit >= 1 && daysSinceFirstVisit <= 7 && typeof cookie.sdr === "undefined") {
-                RobloxEventManager.triggerEvent('rbx_evt_sdr', {});
-                cookie.sdr = 1;
-            }
-            try {
-                localStorage.setItem(cookieName, JSON.stringify(cookie));
-            } catch (ex) {
-                return false;
+    function trackReturns() {
+        try {
+            localStorage.setItem(cookieName, JSON.stringify(cookie));
+        } catch (ex) {
+            return false;
         }
     }
 
-window.GoogleListener = {
-    init: function () {}
-};
+    window.GoogleListener = {
+        init: function () {}
+    };
 
-GoogleListener.init();
+    GoogleListener.init();
 
-if (typeof RobloxEventManager !== "undefined") {
-    RobloxEventManager.initialize(true);
-    RobloxEventManager.triggerEvent('rbx_evt_pageview');
+    if (typeof RobloxEventManager !== "undefined") {
+        RobloxEventManager.initialize(true);
+        RobloxEventManager.triggerEvent('rbx_evt_pageview');
 
-    RobloxEventManager._idleInterval = 450000;
-    RobloxEventManager.startMonitor();
-}
-
+        RobloxEventManager._idleInterval = 450000;
+        RobloxEventManager.startMonitor();
+    }
 </script>
-
 
     
     
