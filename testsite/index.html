@@ -1,116 +1,145 @@
 <!DOCTYPE html>
+<!--[if IE 8]><html class="ie8" ng-app="robloxApp"><![endif]-->
+<!--[if gt IE 8]><!-->
 <html ng-app="SignupOrLogin">
+<!--<![endif]-->
 
 <head>
+    <script>
+        window.Roblox = window.Roblox || {};
+        window.RobloxEventManager = window.RobloxEventManager || {
+            initialize: function () {},
+            triggerEvent: function () {},
+            startMonitor: function () {}
+        };
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
     <title>coalblox (wip)</title>
 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="/coal.png">
 
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700"
+          rel="stylesheet">
 
     <link rel="stylesheet" href="css/leanbase.css">
     <link rel="stylesheet" href="css/page.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-
-    <script>
-    window.Roblox = window.Roblox || {};
-
-    window.RobloxEventManager = {
-        initialize:function(){},
-        triggerEvent:function(){},
-        startMonitor:function(){}
-    };
-
-    Roblox.Endpoints = Roblox.Endpoints || {};
-    Roblox.Endpoints.Urls = {
-        "/login/default.aspx": "/login",
-        "/signup/v1": "https://coalblox-api-yh3x.onrender.com/signup/v1",
-        "/login/v1": "https://coalblox-api-yh3x.onrender.com/login/v1",
-        "/UserCheck/checkifinvalidusernameforsignup":
-        "https://coalblox-api-yh3x.onrender.com/UserCheck/checkifinvalidusernameforsignup"
-    };
-    </script>
-
     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
 
     <script>
-    window.jQuery || document.write(
-        '<script src="/js/jquery/jquery-1.11.1.js"><\/script>'
-    );
+        window.jQuery || document.write(
+            "<script src='/js/jquery/jquery-1.11.1.js'><\/script>"
+        );
     </script>
 
-    <meta property="og:title" content="coalblox">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="coalblox - a fan-made Roblox revival project.">
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
 
+    <meta property="og:site_name" content="ROBLOX">
+    <meta property="og:title" content="ROBLOX">
+    <meta property="og:type" content="website">
+
+    <script>
+        if (typeof Roblox === "undefined") {
+            Roblox = {};
+        }
+
+        Roblox.Endpoints = Roblox.Endpoints || {};
+        Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
+
+        Roblox.Endpoints.Urls['/UserCheck/checkifinvalidusernameforsignup'] =
+            'https://coalblox-api-yh3x.onrender.com/UserCheck/checkifinvalidusernameforsignup';
+
+    </script>
 </head>
 
 <body id="rbx-body">
+
 <div class="navbar navbar-landing navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="row">
 
             <div class="navbar-header">
+
+                <button type="button"
+                        class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target="#LandingNavbar">
+                    Log In
+                </button>
+
                 <div class="navbar-brand hidden-xs">
-                    <img alt="coalblox Logo" class="robloxLogo" src="/coal.png?v=3">
+                    <img alt="coalblox Logo"
+                         class="robloxLogo"
+                         src="/coal.png?v=3">
                 </div>
 
                 <ul id="TopLeftNavLinks" class="nav navbar-nav">
-                    <li class="pull-left">
-                        <a href="#RollerContainer">Play</a>
+                    <li id="PlayLink" class="pull-left">
+                        <a href="#RollerContainer">
+                            Play
+                        </a>
                     </li>
 
-                    <li class="pull-left">
-                        <a href="#WhatsRobloxContainer">About</a>
+                    <li id="AboutLink" class="pull-left">
+                        <a href="#WhatsRobloxContainer">
+                            About
+                        </a>
                     </li>
 
-                    <li class="pull-left">
-                        <a href="#RobloxDeviceText">Platforms</a>
+                    <li id="PlatformLink" class="pull-left">
+                        <a href="#RobloxDeviceText">
+                            Platforms
+                        </a>
                     </li>
+
+                    <li id="magic-line"></li>
                 </ul>
+
             </div>
 
 
-            <div class="collapse navbar-collapse col-sm-6" id="LandingNavbar">
+            <div class="collapse navbar-collapse col-sm-6"
+                 id="LandingNavbar">
 
-                <form id="LogInForm"
+                <form name="loginForm"
+                      action="#"
+                      id="LogInForm"
                       class="navbar-form form-inline navbar-right"
                       method="post">
 
-                    <div class="form-group">
-                        <input 
-                            id="LoginUsername"
-                            type="text"
-                            placeholder="Username"
-                            class="form-control"
-                            name="username">
+                    <div class="form-group" id="LoginUsernameParent">
+                        <input id="LoginUsername"
+                               type="text"
+                               placeholder="Username"
+                               class="form-control"
+                               name="username">
                     </div>
 
-
-                    <div class="form-group">
-                        <input
-                            id="LoginPassword"
-                            type="password"
-                            placeholder="Password"
-                            class="form-control"
-                            name="password">
+                    <div class="form-group" id="LoginPasswordParent">
+                        <input id="LoginPassword"
+                               type="password"
+                               placeholder="Password"
+                               class="form-control"
+                               name="password">
                     </div>
 
-
                     <div class="form-group">
-                        <input 
-                            type="submit"
-                            id="LoginButton"
-                            class="form-control"
-                            value="Log In">
+                        <input type="submit"
+                               id="LoginButton"
+                               class="form-control"
+                               value="Log In"
+                               name="submitLogin">
                     </div>
 
-
-                    <a class="navbar-link" href="#">
+                    <a id="HeaderForgotPassword"
+                       class="navbar-link"
+                       href="#">
                         Forgot Username/Password?
                     </a>
 
@@ -121,208 +150,432 @@
         </div>
     </div>
 </div>
-
-
-
 <div class="container-fluid">
 
 <section class="row full-height-section" id="RollerContainer">
 
-<div class="col-md-12 inner-full-height-section">
+    <div class="col-md-12 inner-full-height-section" id="InnerRollerContainer">
 
-<div id="MainCenterContainer" class="row">
+        <div id="MainCenterContainer" class="row">
 
+            <div class="col-xs-12 col-md-6">
 
-<div class="col-xs-12 col-md-6">
+                <div id="MainLogo" class="text-right">
 
-<div id="MainLogo" class="text-right">
+                    <div id="LogoAndSlogan" class="text-center">
 
-<div id="LogoAndSlogan" class="text-center">
+                        <img id="MainLogoImage"
+                             title="ROBLOX"
+                             class="center-block img-responsive"
+                             src="/coalbloxicon.png">
 
-<img 
-id="MainLogoImage"
-class="center-block img-responsive"
-src="/coalbloxicon.png">
+                        <div class="clearfix"></div>
 
+                        <h1>
+                            Powering Imagination<span>&#8482;</span>
+                        </h1>
 
-<h1>
-Powering Imagination
-<span>™</span>
-</h1>
+                    </div>
 
+                </div>
 
-</div>
-
-</div>
-
-</div>
+            </div>
 
 
+            <div class="col-xs-12 col-md-6">
 
-<div class="col-xs-12 col-md-6">
+                <div id="SignUpFormContainer">
 
+                    <div class="rbx-login-partial-legacy">
 
-<div id="SignUpFormContainer">
+                        <h3 class="text-center signup-header">
+                            Sign up and start having fun!
+                        </h3>
 
-
-<h3 class="text-center signup-header">
-Sign up and start having fun!
-</h3>
-
-
-<div class="signup-container">
-
-
-<div class="signup-input-area">
+                        <h3 class="text-center login-header" style="display:none;">
+                            Log in and start having fun!
+                        </h3>
 
 
-<input
-id="signup-username"
-class="form-control input-field"
-placeholder="Username"
-type="text">
+                        <div class="signup-or-log-in"
+                             ng-controller="SignupOrLoginController">
 
 
-<input
-id="signup-password"
-class="form-control input-field"
-placeholder="Password"
-type="password">
+                            <div class="signup-container"
+                                 ng-controller="SignupController">
 
 
-<input
-id="signup-password-confirm"
-class="form-control input-field"
-placeholder="Confirm Password"
-type="password">
+                                <div class="signup-input-area"
+                                     ng-form="signupForm">
 
 
-</div>
+                                    <div class="form-group">
+
+                                        <input id="signup-username"
+                                               class="form-control input-field"
+                                               placeholder="Username"
+                                               type="text">
+
+                                        <p id="signup-usernameInputValidation"
+                                           class="form-control-label input-validation text-error">
+                                        </p>
+
+                                    </div>
 
 
 
-<button 
-id="signup-button"
-class="btn-primary-md signup-submit-button">
+                                    <div class="form-group">
 
-Sign Up
+                                        <input id="signup-password"
+                                               class="form-control input-field"
+                                               placeholder="Password"
+                                               type="password">
 
-</button>
+                                        <p id="signup-passwordInputValidation"
+                                           class="form-control-label input-validation text-error">
+                                        </p>
 
-
-</div>
-
-
-</div>
-
-
-</div>
+                                    </div>
 
 
-</div>
 
-</div>
+                                    <div class="form-group">
+
+                                        <input id="signup-password-confirm"
+                                               class="form-control input-field"
+                                               placeholder="Confirm Password"
+                                               type="password">
+
+                                        <p id="signup-passwordConfirmInputValidation"
+                                           class="form-control-label input-validation text-error">
+                                        </p>
+
+                                    </div>
+
+
+
+                                    <div class="birthday-container">
+
+                                        <div class="form-group">
+
+                                            <div class="form-control fake-input-lg">
+
+                                                <label class="birthday-label">
+                                                    Birthday
+                                                </label>
+
+
+                                                <div class="rbx-select-group month">
+
+                                                    <select id="MonthDropdown"
+                                                            class="input-field rbx-select">
+
+                                                        <option value="" selected disabled>
+                                                            Month
+                                                        </option>
+
+                                                        <option value="Jan">January</option>
+                                                        <option value="Feb">February</option>
+                                                        <option value="Mar">March</option>
+                                                        <option value="Apr">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="Jun">June</option>
+                                                        <option value="Jul">July</option>
+                                                        <option value="Aug">August</option>
+                                                        <option value="Sep">September</option>
+                                                        <option value="Oct">October</option>
+                                                        <option value="Nov">November</option>
+                                                        <option value="Dec">December</option>
+
+                                                    </select>
+
+                                                </div>
+
+
+
+                                                <div class="rbx-select-group day">
+
+                                                    <select id="DayDropdown"
+                                                            class="input-field rbx-select">
+
+                                                        <option value="" selected disabled>
+                                                            Day
+                                                        </option>
+
+                                                        <option value="1">01</option>
+                                                        <option value="2">02</option>
+                                                        <option value="3">03</option>
+                                                        <option value="4">04</option>
+                                                        <option value="5">05</option>
+                                                        <option value="6">06</option>
+                                                        <option value="7">07</option>
+                                                        <option value="8">08</option>
+                                                        <option value="9">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                        <option value="31">31</option>
+
+                                                    </select>
+
+                                                </div>
+
+
+                                                <div class="rbx-select-group year">
+
+                                                    <select id="YearDropdown"
+                                                            class="input-field rbx-select">
+
+                                                        <option value="" selected disabled>
+                                                            Year
+                                                        </option>
+
+                                                        <option value="2016">2016</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2011">2011</option>
+                                                        <option value="2010">2010</option>
+                                                        <option value="2009">2009</option>
+                                                        <option value="2008">2008</option>
+                                                        <option value="2007">2007</option>
+                                                        <option value="2006">2006</option>
+                                                        <option value="2005">2005</option>
+                                                        <option value="2004">2004</option>
+                                                        <option value="2003">2003</option>
+
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <button id="signup-button"
+                                            type="button"
+                                            class="btn-primary-md signup-submit-button"
+                                            data-signup-api-url="https://coalblox-api-yh3x.onrender.com/signup/v1">
+
+                                        Sign Up
+
+                                    </button>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </section>
-
+</section>
 
 
 <section class="row full-height-section" id="WhatsRobloxContainer">
 
-<div class="col-md-12 inner-full-height-section">
+    <div class="col-md-12 inner-full-height-section">
+
+        <div class="row" id="InnerWhatsRobloxContainer1">
+
+            <div id="WhatIsRobloxTextBg"
+                 class="col-sm-5 col-sm-offset-6 col-xs-8 col-xs-offset-2">
+
+                <h1 class="text-center">
+                    WHAT IS COALBLOX?
+                </h1>
+
+                <p class="lead text-justify">
+                    coalblox is a fan-made ROBLOX revival project inspired by
+                    the classic Roblox experience from 2016.
+
+                    Our goal is to recreate the feeling of old Roblox —
+                    the simple website, classic games, and community-driven
+                    atmosphere.
+
+                    coalblox is not affiliated with Roblox Corporation.
+                    It is a separate project built by fans who enjoy the
+                    older Roblox era and want to bring back that nostalgic
+                    experience.
+                </p>
+
+            </div>
+
+        </div>
 
 
-<div class="row" id="InnerWhatsRobloxContainer1">
+
+        <div class="row" id="InnerWhatsRobloxContainer2">
+
+            <div id="GameImage1"
+                 class="col-sm-4 col-xs-12 game-image">
+            </div>
 
 
-<div class="col-sm-5 col-sm-offset-6">
-
-<h1 class="text-center">
-WHAT IS COALBLOX?
-</h1>
+            <div id="GameImage2"
+                 class="hidden-xs col-sm-4 game-image">
+            </div>
 
 
-<p class="lead">
-coalblox is a fan-made ROBLOX revival project inspired by classic Roblox.
-Our goal is to recreate the older Roblox experience with a simple website,
-classic games, and a community atmosphere.
-</p>
+            <div id="GameImage3"
+                 class="col-sm-4 hidden-xs game-image">
+            </div>
+
+        </div>
 
 
-</div>
-
-
-</div>
-
-
-</div>
+    </div>
 
 </section>
+
+
+
 <section id="DeviceSection">
 
-<div class="row" id="RobloxDeviceText">
+    <div class="row" id="RobloxDeviceText">
 
-<div class="col-md-6 col-md-offset-3 text-center">
+        <div class="col-md-6 col-md-offset-3 text-center">
 
-<h2>
-COALBLOX ON YOUR DEVICE
-</h2>
+            <h2>
+                COALBLOX ON YOUR DEVICE
+            </h2>
 
-<p class="lead">
-You can access coalblox on PC at the moment.
-</p>
+            <p class="lead center-block">
+                You can access coalblox on PC at the moment.
+            </p>
 
-</div>
+        </div>
 
-</div>
-
-
-<footer class="container-footer">
-
-<div class="footer">
-
-<ul class="row footer-links">
-
-<li class="footer-link">
-<a href="/about">
-About Us
-</a>
-</li>
+    </div>
 
 
-<li class="footer-link">
-<a href="/blog">
-Blog
-</a>
-</li>
+
+    <footer class="container-footer">
+
+        <div class="footer">
+
+            <ul class="row footer-links">
+
+                <li class="footer-link">
+                    <a href="#">
+                        About Us
+                    </a>
+                </li>
+
+                <li class="footer-link">
+                    <a href="#">
+                        Jobs
+                    </a>
+                </li>
+
+                <li class="footer-link">
+                    <a href="#">
+                        Blog
+                    </a>
+                </li>
+
+                <li class="footer-link">
+                    <a href="#">
+                        Privacy
+                    </a>
+                </li>
+
+                <li class="footer-link">
+                    <a href="#">
+                        Parents
+                    </a>
+                </li>
+
+                <li class="footer-link">
+                    <a href="#">
+                        Help
+                    </a>
+                </li>
+
+            </ul>
 
 
-<li class="footer-link">
-<a href="/help">
-Help
-</a>
-</li>
+            <p class="text-footer footer-note">
 
-</ul>
+                ROBLOX, characters, logos, names and related indicia are
+                trademarks of ROBLOX Corporation.
 
+                coalblox is a fan project and is not affiliated with Roblox
+                Corporation.
 
-<p class="text-footer footer-note">
-
-coalblox is a fan-made Roblox revival project.
-Not affiliated with Roblox Corporation.
-
-</p>
+            </p>
 
 
-</div>
+        </div>
 
-</footer>
+    </footer>
 
 
 </section>
 
 
 </div>
+
+
+
+<script src="/js/acb41411e84505341e7b214a6efd9fc2.js"></script>
+<script src="/js/df595d127e648dd5b4c021edc6d81268.js"></script>
+
+
+<script>
+window.Roblox = window.Roblox || {};
+
+Roblox.config = Roblox.config || {
+    externalResources: [],
+    paths: {}
+};
+
+
+Roblox.XsrfToken = Roblox.XsrfToken || {
+    setToken: function(){}
+};
+
+
+RobloxEventManager.initialize(true);
+</script>
 
 
 
@@ -335,178 +588,60 @@ document.getElementById("LogInForm")
 
 
     const username =
-    document.getElementById("LoginUsername").value;
+        document.getElementById("LoginUsername").value;
 
 
     const password =
-    document.getElementById("LoginPassword").value;
-
+        document.getElementById("LoginPassword").value;
 
 
     try {
 
-
         const response = await fetch(
-        "https://coalblox-api-yh3x.onrender.com/login/v1",
-        {
+            "https://coalblox-api-yh3x.onrender.com/login/v1",
+            {
+                method:"POST",
 
-            method:"POST",
+                headers:{
+                    "Content-Type":
+                    "application/x-www-form-urlencoded"
+                },
 
-            headers:{
-                "Content-Type":
-                "application/x-www-form-urlencoded"
-            },
-
-
-            body:new URLSearchParams({
-
-                username:username,
-                password:password
-
-            })
-
-        });
+                body:new URLSearchParams({
+                    username,
+                    password
+                })
+            }
+        );
 
 
-
-        const data =
-        await response.json();
-
-
-
-        console.log(data);
-
+        const data = await response.json();
 
 
         if(data.success){
 
-            window.location.href="/home";
+            window.location.href =
+                data.redirect;
 
         }
+        else {
 
-        else{
-
-            alert(
-            data.message ||
-            "Invalid login"
-            );
+            alert(data.message);
 
         }
-
 
 
     }
+    catch(err){
 
-    catch(error){
-
-        console.error(error);
-
-        alert(
-        "Couldn't connect to Coalblox servers."
-        );
+        console.error(err);
+        alert("Couldn't connect to the server.");
 
     }
 
 
 });
 
-
-
-
-
-document.getElementById("signup-button")
-.addEventListener("click", async function(){
-
-
-const username =
-document.getElementById("signup-username").value;
-
-
-const password =
-document.getElementById("signup-password").value;
-
-
-const confirm =
-document.getElementById("signup-password-confirm").value;
-
-
-
-if(password !== confirm){
-
-alert("Passwords do not match");
-
-return;
-
-}
-
-
-
-try{
-
-
-const response = await fetch(
-"https://coalblox-api-yh3x.onrender.com/signup/v1",
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":
-"application/json"
-},
-
-
-body:JSON.stringify({
-
-username:username,
-password:password
-
-})
-
-
-});
-
-
-
-const data =
-await response.json();
-
-
-
-if(data.success){
-
-alert("Account created!");
-
-window.location.href="/home";
-
-}
-
-else{
-
-alert(
-data.message ||
-"Signup failed"
-);
-
-}
-
-
-}
-
-
-catch(error){
-
-console.error(error);
-
-alert(
-"Couldn't connect to Coalblox servers."
-);
-
-}
-
-
-
-});
 
 </script>
 
