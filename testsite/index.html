@@ -5,148 +5,301 @@
 <!--<![endif]-->
 
 <head>
-    <script>
-        window.Roblox = window.Roblox || {};
-        window.RobloxEventManager = window.RobloxEventManager || {
-            initialize: function () {},
-            triggerEvent: function () {},
-            startMonitor: function () {}
-        };
-    </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script>
+window.Roblox = window.Roblox || {};
 
-    <title>coalblox (wip)</title>
+window.RobloxEventManager = window.RobloxEventManager || {
+    initialize: function(){},
+    triggerEvent: function(){},
+    startMonitor: function(){}
+};
+</script>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="/coal.png">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700"
-          rel="stylesheet">
 
-    <link rel="stylesheet" href="css/leanbase.css">
-    <link rel="stylesheet" href="css/page.css">
+<title>coalblox (wip)</title>
 
-    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
 
-    <script>
-        window.jQuery || document.write(
-            "<script src='/js/jquery/jquery-1.11.1.js'><\/script>"
-        );
-    </script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
 
-    <meta property="og:site_name" content="ROBLOX">
-    <meta property="og:title" content="ROBLOX">
-    <meta property="og:type" content="website">
+<link rel="icon" href="/coal.png">
 
-    <script>
-        if (typeof Roblox === "undefined") {
-            Roblox = {};
-        }
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700"
+      rel="stylesheet">
 
-        Roblox.Endpoints = Roblox.Endpoints || {};
-        Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
 
-        Roblox.Endpoints.Urls['/UserCheck/checkifinvalidusernameforsignup'] =
-            'https://coalblox-api-yh3x.onrender.com/UserCheck/checkifinvalidusernameforsignup';
+<link rel="stylesheet" href="css/leanbase.css">
+<link rel="stylesheet" href="css/page.css">
 
-    </script>
+
+<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+
+<script>
+window.jQuery || document.write(
+    "<script src='/js/jquery/jquery-1.11.1.js'><\/script>"
+);
+</script>
+
+
+<script src="//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+<style>
+
+.coverSprite {
+    background-repeat: no-repeat;
+}
+
+
+#RollerContainer {
+    background-image: url('https://images.rbxcdn.com/dcbdfaf1c08058e71f65c09f7b98ff04.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#InnerWhatsRobloxContainer1 {
+
+    height:70%;
+
+    background-image:
+    url('https://images.rbxcdn.com/cca69eca62f23ca413fc920549e936ea.jpg');
+
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:30% center;
+
+    color:white;
+
+}
+
+
+
+#GameImage1 {
+
+    background-image:
+    url('https://images.rbxcdn.com/42268b6264d89827401ef912f174f288.jpg');
+
+    margin-right:5px;
+
+}
+
+
+
+#GameImage2 {
+
+    background-image:
+    url('https://images.rbxcdn.com/04baeb33ef66ef1395cd5464309fece6.jpg');
+
+    margin-right:5px;
+
+}
+
+
+
+#GameImage3 {
+
+    background-image:
+    url('https://images.rbxcdn.com/e8b89d14690203420d64b5b2fda0b461.jpg');
+
+    margin-right:-10px;
+
+    width:calc(33.333333% - 10px);
+
+}
+
+
+.game-image {
+
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+
+}
+
+
+</style>
+
+
+
+<script>
+if(typeof(Roblox) === "undefined"){
+    Roblox = {};
+}
+
+Roblox.Endpoints = Roblox.Endpoints || {};
+Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
+
+
+Roblox.Endpoints.Urls['/UserCheck/checkifinvalidusernameforsignup'] =
+'https://coalblox-api-yh3x.onrender.com/UserCheck/checkifinvalidusernameforsignup';
+
+
+</script>
+
+
 </head>
+
+
 
 <body id="rbx-body">
 
+
+
 <div class="navbar navbar-landing navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="row">
 
-            <div class="navbar-header">
+<div class="container">
 
-                <button type="button"
-                        class="navbar-toggle"
-                        data-toggle="collapse"
-                        data-target="#LandingNavbar">
-                    Log In
-                </button>
-
-                <div class="navbar-brand hidden-xs">
-                    <img alt="coalblox Logo"
-                         class="robloxLogo"
-                         src="/coal.png?v=3">
-                </div>
-
-                <ul id="TopLeftNavLinks" class="nav navbar-nav">
-                    <li id="PlayLink" class="pull-left">
-                        <a href="#RollerContainer">
-                            Play
-                        </a>
-                    </li>
-
-                    <li id="AboutLink" class="pull-left">
-                        <a href="#WhatsRobloxContainer">
-                            About
-                        </a>
-                    </li>
-
-                    <li id="PlatformLink" class="pull-left">
-                        <a href="#RobloxDeviceText">
-                            Platforms
-                        </a>
-                    </li>
-                </ul>
-
-            </div>
+<div class="row">
 
 
-            <div class="collapse navbar-collapse col-sm-6"
-                 id="LandingNavbar">
 
-                <form name="loginForm"
-                      action="#"
-                      id="LogInForm"
-                      class="navbar-form form-inline navbar-right"
-                      method="post">
+<div class="navbar-header">
 
-                    <div class="form-group" id="LoginUsernameParent">
-                        <input id="LoginUsername"
-                               type="text"
-                               placeholder="Username"
-                               class="form-control"
-                               name="username">
-                    </div>
 
-                    <div class="form-group" id="LoginPasswordParent">
-                        <input id="LoginPassword"
-                               type="password"
-                               placeholder="Password"
-                               class="form-control"
-                               name="password">
-                    </div>
+<button type="button"
+        class="navbar-toggle"
+        data-toggle="collapse"
+        data-target="#LandingNavbar">
 
-                    <div class="form-group">
-                        <input type="submit"
-                               id="LoginButton"
-                               class="form-control"
-                               value="Log In"
-                               name="submitLogin">
-                    </div>
+Log In
 
-                    <a id="HeaderForgotPassword"
-                       class="navbar-link"
-                       href="#">
-                        Forgot Username/Password?
-                    </a>
+</button>
 
-                </form>
 
-            </div>
 
-        </div>
-    </div>
+<div class="navbar-brand hidden-xs">
+
+<img alt="coalblox Logo"
+     class="robloxLogo"
+     src="/coal.png?v=3">
+
+</div>
+
+
+
+<ul id="TopLeftNavLinks" class="nav navbar-nav">
+
+
+<li id="PlayLink" class="pull-left">
+
+<a href="#RollerContainer">
+Play
+</a>
+
+</li>
+
+
+
+<li id="AboutLink" class="pull-left">
+
+<a href="#WhatsRobloxContainer">
+About
+</a>
+
+</li>
+
+
+
+<li id="PlatformLink" class="pull-left">
+
+<a href="#RobloxDeviceText">
+Platforms
+</a>
+
+</li>
+
+
+
+<li id="magic-line"></li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<div class="collapse navbar-collapse col-sm-6"
+     id="LandingNavbar">
+
+
+
+<form name="loginForm"
+      action="#"
+      id="LogInForm"
+      class="navbar-form form-inline navbar-right"
+      method="post">
+
+
+
+<div class="form-group" id="LoginUsernameParent">
+
+<input id="LoginUsername"
+       type="text"
+       placeholder="Username"
+       class="form-control"
+       name="username">
+
+</div>
+
+
+
+<div class="form-group" id="LoginPasswordParent">
+
+<input id="LoginPassword"
+       type="password"
+       placeholder="Password"
+       class="form-control"
+       name="password">
+
+</div>
+
+
+
+<div class="form-group">
+
+<input type="submit"
+       id="LoginButton"
+       class="form-control"
+       value="Log In"
+       name="submitLogin">
+
+</div>
+
+
+
+<a id="HeaderForgotPassword"
+   class="navbar-link"
+   href="#">
+
+Forgot Username/Password?
+
+</a>
+
+
+
+</form>
+
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
 </div>
 <div class="container-fluid">
 
