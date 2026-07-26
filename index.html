@@ -976,30 +976,12 @@ Roblox.JSErrorTracker = Roblox.JSErrorTracker || {
         function trackReturns() {
             function dayDiff(d1, d2) {
                 return Math.floor((d1-d2)/86400000);
-            }
-            if (!localStorage) {
-                return false;
-            }
-
-            var cookieName = 'RBXReturn';
-            var cookieOptions = {expires:9001};
-            var cookieStr = localStorage.getItem(cookieName) || "";
-            var cookie = {};
-
             try {
-                cookie = JSON.parse(cookieStr);
-            } catch (ex) {
-                // busted cookie string from old previous version of the code
-            }
-
-            try {
-                if (typeof cookie.ts === "undefined" || isNaN(new Date(cookie.ts))) {
-                    localStorage.setItem(cookieName, JSON.stringify({ ts: new Date().toDateString() }));
-                    return false;
-                }
-            } catch (ex) {
-                return false;
-            }
+    localStorage.setItem(cookieName, JSON.stringify(cookie));
+} catch (ex) {
+    return false;
+}
+}
 
             var daysSinceFirstVisit = dayDiff(new Date(), new Date(cookie.ts));
             if (daysSinceFirstVisit == 1 && typeof cookie.odr === "undefined") {
