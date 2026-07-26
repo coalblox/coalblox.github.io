@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html ng-app="coalbloxApp">
+<head>
+    <title>coalblox (wip)</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="/coal.png">
+
+    <link rel="stylesheet" href="css/leanbase.css">
+    <link rel="stylesheet" href="css/page.css">
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- Basic Roblox compatibility -->
+    <script>
+    window.Roblox = window.Roblox || {};
+
+    window.RobloxEventManager = {
+        initialize:function(){},
+        triggerEvent:function(){},
+        startMonitor:function(){}
+    };
+    </script>
+
+
+    <!-- Coalblox Angular App -->
+    <script>
+    angular.module("coalbloxApp", [])
+
+    .controller("SignupOrLoginController", function($scope){
+        $scope.loginMode = false;
+    })
+
+
+    .controller("SignupController", function($scope){
+
+        $scope.signup = {
+            username:"",
+            password:"",
+            passwordConfirm:"",
+            birthdayMonth:"",
+            birthdayDay:"",
+            birthdayYear:"",
+            gender:null
+        };
+
+
+        $scope.setGender = function(event, gender){
+            $scope.signup.gender = gender;
+        };
+
+
+        $scope.submitSignup = async function(){
+
+            if($scope.signup.password !== $scope.signup.passwordConfirm){
+                alert("Passwords do not match");
+                return;
+            }
+
+
+            try {
+
+                let response = await fetch(
+                    "https://coalblox-api-yh3x.onrender.com/signup/v1",
+                    {
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify($scope.signup)
+                    }
+                );
+
+
+                let data = await response.json();
+
+                console.log(data);
+
+
+                if(data.success){
+                    alert("Account created!");
+                    window.location.href="/";
+                }
+                else{
+                    alert(data.message || "Signup failed");
+                }
+
+
+            } catch(error){
+
+                console.error(error);
+                alert("Could not connect to server");
+
+            }
+
+        };
+
+    })
+
+
+
+    .controller("CaptchaController", function($scope){
+
+        $scope.submitCaptcha=function(){
+            console.log("Captcha ignored");
+        };
+
+    });
+
+    </script>
+
+
+    <script>
+    window.Roblox = window.Roblox || {};
+
+    Roblox.config = {
+        externalResources: [],
+        paths:{}
+    };
+
+    Roblox.XsrfToken={
+        setToken:function(){}
+    };
+
+    Roblox.DeveloperConsoleWarning={
+        showWarning:function(){}
+    };
+
+    Roblox.JSErrorTracker={
+        initialize:function(){}
+    };
+    </script>
+
+
+</head>
+
+<body id="rbx-body">
+<!-- Navbar -->
+<div class="navbar navbar-landing navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <img alt="coalblox Logo"
+                         class="robloxLogo"
+                         src="/coal.png?v=3">
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#RollerContainer">Play</a>
+                    </li>
+
+                    <li>
+                        <a href="#WhatsRobloxContainer">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#RobloxDeviceText">Platforms</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- Login -->
+            <div class="collapse navbar-collapse">
+
+                <form id="LogInForm"
+                      class="navbar-form navbar-right">
+
+                    <div class="form-group">
+                        <input id="LoginUsername"
+                               type="text"
+                               class="form-control"
+                               placeholder="Username">
+                    </div>
+
+
+                    <div class="form-group">
+                        <input id="LoginPassword"
+                               type="password"
+                               class="form-control"
+                               placeholder="Password">
+                    </div>
+
+
+                    <button type="submit"
+                            class="form-control">
+                        Log In
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Main section -->
+<div class="container-fluid">
+
+<section class="row full-height-section" id="RollerContainer">
+
+<div class="col-md-12 inner-full-height-section">
+
+<div class="row" id="MainCenterContainer">
+
+
+<!-- Logo -->
+<div class="col-xs-12 col-md-6">
+
+<div id="MainLogo">
+
+<div id="LogoAndSlogan">
+
+<img id="MainLogoImage"
+     class="center-block img-responsive"
+     src="/coalbloxicon.png">
+
+
+<h1>
+Powering Imagination
+</h1>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Signup -->
+<div class="col-xs-12 col-md-6">
+
+
+<div class="signup-or-log-in"
+     ng-controller="SignupOrLoginController">
+
+
+<h3 class="text-center signup-header">
+Sign up and start having fun!
+</h3>
+
+
+
+<div class="signup-container"
+     ng-controller="SignupController">
+
+
+
+<div class="signup-input-area"
+     ng-form="signupForm">
+
+
+
+<!-- Username -->
+
+<div class="form-group">
+
+<input id="signup-username"
+       class="form-control input-field"
+       type="text"
+       placeholder="Username"
+       ng-model="signup.username">
+
+</div>
+
+
+
+<!-- Password -->
+
+<div class="form-group">
+
+<input id="signup-password"
+       class="form-control input-field"
+       type="password"
+       placeholder="Password"
+       ng-model="signup.password">
+
+</div>
+
+
+
+<!-- Confirm password -->
+
+<div class="form-group">
+
+<input id="signup-password-confirm"
+       class="form-control input-field"
+       type="password"
+       placeholder="Confirm Password"
+       ng-model="signup.passwordConfirm">
+
+</div>
+
+
+
+<!-- Birthday -->
+
+<div class="birthday-container">
+
+
+<select class="input-field"
+        ng-model="signup.birthdayMonth">
+
+<option value="">
+Month
+</option>
+
+<option>
+Jan
+</option>
+
+<option>
+Feb
+</option>
+
+<option>
+Mar
+</option>
+
+<option>
+Apr
+</option>
+
+<option>
+May
+</option>
+
+<option>
+Jun
+</option>
+
+<option>
+Jul
+</option>
+
+<option>
+Aug
+</option>
+
+<option>
+Sep
+</option>
+
+<option>
+Oct
+</option>
+
+<option>
+Nov
+</option>
+
+<option>
+Dec
+</option>
+
+</select>
+
+
+
+<select class="input-field"
+        ng-model="signup.birthdayDay">
+
+<option value="">
+Day
+</option>
+
+<option ng-repeat="d in [].constructor(31) track by $index">
+{{$index+1}}
+</option>
+
+</select>
+
+
+
+<select class="input-field"
+        ng-model="signup.birthdayYear">
+
+<option value="">
+Year
+</option>
+
+<option ng-repeat="y in [].constructor(100) track by $index">
+{{2026-$index}}
+</option>
+
+</select>
+
+
+</div>
+<!-- Gender -->
+
+<div class="gender-container">
+
+<label>Gender</label>
+
+<br>
+
+<button type="button"
+        class="gender-circle"
+        ng-click="setGender($event,3)">
+    Female
+</button>
+
+
+<button type="button"
+        class="gender-circle"
+        ng-click="setGender($event,2)">
+    Male
+</button>
+
+</div>
+
+
+
+<br>
+
+
+<!-- Signup button -->
+
+<button id="signup-button"
+        class="btn-primary-md signup-submit-button"
+        ng-click="submitSignup()">
+
+Sign Up
+
+</button>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<!-- About section -->
+
+<section class="row full-height-section"
+         id="WhatsRobloxContainer">
+
+<div class="col-md-12 inner-full-height-section">
+
+<div id="InnerWhatsRobloxContainer1">
+
+<div id="WhatIsRobloxTextBg">
+
+<h1>
+WHAT IS COALBLOX?
+</h1>
+
+
+<p class="lead">
+
+coalblox is a fan-made ROBLOX revival project inspired by
+classic Roblox.
+
+Our goal is to recreate the old Roblox experience with a
+classic website, games, and community.
+
+coalblox is not affiliated with Roblox Corporation.
+
+</p>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- Device section -->
+
+<section id="DeviceSection">
+
+<div id="RobloxDeviceText">
+
+<h2>
+COALBLOX ON YOUR DEVICE
+</h2>
+
+
+<p>
+Currently available on PC.
+</p>
+
+
+</div>
+
+</section>
+
+
+
+
+<footer class="container-footer">
+
+<div class="footer">
+
+<p class="footer-note">
+
+coalblox is a fan project inspired by classic Roblox.
+
+</p>
+
+</div>
+
+</footer>
+
+</div>
+
+
+
+
+
+<!-- Login API -->
+
+<script>
+
+document
+.getElementById("LogInForm")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    let username =
+    document.getElementById("LoginUsername").value;
+
+
+    let password =
+    document.getElementById("LoginPassword").value;
+
+
+
+    try {
+
+
+        let response =
+        await fetch(
+        "https://coalblox-api-yh3x.onrender.com/login/v1",
+        {
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":
+                "application/x-www-form-urlencoded"
+            },
+
+
+            body:new URLSearchParams({
+
+                username:username,
+
+                password:password
+
+            })
+
+        });
+
+
+
+        let data =
+        await response.json();
+
+
+        console.log(data);
+
+
+
+        if(data.success){
+
+            window.location.href =
+            data.redirect || "/";
+
+        }
+
+        else{
+
+            alert(
+            data.message ||
+            "Login failed"
+            );
+
+        }
+
+
+
+    }
+
+
+    catch(err){
+
+        console.error(err);
+
+        alert(
+        "Could not connect to server"
+        );
+
+    }
+
+
+});
+
+</script>
+
+
+
+
+</body>
+
+</html>
