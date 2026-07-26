@@ -974,13 +974,15 @@ Roblox.JSErrorTracker = Roblox.JSErrorTracker || {
 <script type="text/javascript">
     $(function(){
         function trackReturns() {
-            function dayDiff(d1, d2) {
-                return Math.floor((d1-d2)/86400000);
-            try {
-    localStorage.setItem(cookieName, JSON.stringify(cookie));
-} catch (ex) {
-    return false;
-}
+    function dayDiff(d1, d2) {
+        return Math.floor((d1 - d2) / 86400000);
+    }
+
+    try {
+        localStorage.setItem(cookieName, JSON.stringify(cookie));
+    } catch (ex) {
+        return false;
+    }
 }
 
             var daysSinceFirstVisit = dayDiff(new Date(), new Date(cookie.ts));
