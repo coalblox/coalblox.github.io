@@ -385,7 +385,6 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
         <div class="signup-input-area" ng-form name="signupForm" rbx-form-context context="RollerCoaster">
              
 
-<img src="/timg/rbx" style="position: absolute"/>
             <div class="form-group" ng-class="{'has-error' : (badSubmit || signupForm.username.$dirty) && signupForm.username.$invalid, 'has-success': (signupForm.username.$dirty && signupForm.username.$valid) }">
                 <input id="signup-username"  ng-trim="false" ng-change="onChange()" name="username" class="form-control input-field" type="text" tabindex="1" rbx-valid-username rbx-form-interaction rbx-form-validation placeholder="Username (length 3-20, _ is allowed)" ng-model="signup.username" />
                 <p id="signup-usernameInputValidation" class="form-control-label input-validation text-error" ng-bind="(badSubmit || signupForm.username.$dirty) ? signupForm.username.$validationMessage : ''"></p>
