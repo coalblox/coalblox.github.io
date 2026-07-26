@@ -1013,21 +1013,16 @@ Roblox.JSErrorTracker = Roblox.JSErrorTracker || {
                 localStorage.setItem(cookieName, JSON.stringify(cookie));
             } catch (ex) {
                 return false;
-            }
         }
+    }
 
-
-<script>
 window.GoogleListener = {
     init: function () {}
 };
-</script>
 
-        GoogleListener.init();
+GoogleListener.init();
 
-
-    
-        RobloxEventManager.initialize(true);
+RobloxEventManager.initialize(true);
         RobloxEventManager.triggerEvent('rbx_evt_pageview');
         trackReturns();
         
