@@ -850,7 +850,7 @@ document.getElementById("signup-button").addEventListener("click", async functio
         console.log(data);
 
         if (data.success) {
-            window.location.href = data.redirect || "/";
+            window.location.href = data.redirect || "/games";
         } else {
             alert(data.message || "Signup failed.");
         }
