@@ -1089,15 +1089,14 @@ document.getElementById("LogInForm").addEventListener("submit", async function(e
             })
         });
 
-        if (response.redirected) {
-            window.location.href = response.url;
-            return;
+        const data = await response.json();
+
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            alert(data.message);
         }
 
-        const text = await response.text();
-        document.open();
-        document.write(text);
-        document.close();
     } catch (err) {
         alert("Couldn't connect to the server.");
         console.error(err);
