@@ -4,6 +4,14 @@
 <html>
 <!--<![endif]-->
 <head>
+<script>
+window.Roblox = window.Roblox || {};
+window.RobloxEventManager = window.RobloxEventManager || {
+    initialize: function(){},
+    triggerEvent: function(){},
+    startMonitor: function(){}
+};
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <!-- MachineID: WEB132 -->
     <title>coalblox (wip)</title>
@@ -101,7 +109,7 @@
 
     
             <script type="text/javascript">
-            if (Roblox && Roblox.EventStream) {
+            if (typeof Roblox !== "undefined" && Roblox.EventStream) {
                 Roblox.EventStream.Init("//ecsv2.roblox.com/www/e.png",
                     "//ecsv2.roblox.com/www/e.png",
                     "//ecsv2.roblox.com/pe?t=studio",
@@ -112,7 +120,7 @@
 
 
 <script type="text/javascript">
-    if (Roblox && Roblox.PageHeartbeatEvent) {
+    if (typeof Roblox !== "undefined" && Roblox.PageHeartbeatEvent) {
         Roblox.PageHeartbeatEvent.Init([2,8,20,60]);
     }
 </script>        <script type="text/javascript">
@@ -1015,21 +1023,13 @@ window.GoogleListener = {
 
 GoogleListener.init();
 
-RobloxEventManager.initialize(true);
-        RobloxEventManager.triggerEvent('rbx_evt_pageview');
-        trackReturns();
-        
+if (typeof RobloxEventManager !== "undefined") {
+    RobloxEventManager.initialize(true);
+    RobloxEventManager.triggerEvent('rbx_evt_pageview');
 
-    
-        RobloxEventManager._idleInterval = 450000;
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_start');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_ftp');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_success');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_fmp');
-        RobloxEventManager.startMonitor();
-        
-
-    });
+    RobloxEventManager._idleInterval = 450000;
+    RobloxEventManager.startMonitor();
+}
 
 </script>
 
